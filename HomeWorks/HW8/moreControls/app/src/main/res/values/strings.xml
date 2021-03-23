@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">moreControls</string>
+    <string name="fire_ball">use_fireball</string>
+    <string name="btn_apply">firewall</string>
+</resources>
