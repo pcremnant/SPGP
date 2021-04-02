@@ -16,12 +16,12 @@ import java.util.Random;
 public class GameView extends View {
     private static final String TAG = GameView.class.getSimpleName();
     public static final int BALL_COUNT = 10;
-    // final 이 붙은 변수는 생성자에서 값이 결정되어야 한다
-    ArrayList<Ball> balls = new ArrayList<Ball>();
+    ArrayList<GameObject> objects = new ArrayList<GameObject>();
+    private Player player;
+
     private float lastTime;
     public static float frameTime;
     public static GameView view;
-    private Player player;
 
     public GameView(Context context, @Nullable AttributeSet attribute) {
         super(context, attribute);
@@ -35,12 +35,8 @@ public class GameView extends View {
     }
 
     private void doGameFrame() {
-        // update();
-        for (Ball b : balls){
-            b.update();
-        }
-        player.update();
-        // draw();
+        for (GameObject object : objects)
+            object.update();
         invalidate();
 
         Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
@@ -59,6 +55,7 @@ public class GameView extends View {
 
     private void initResources() {
         player = new Player(100,100, 0, 0);
+        objects.add(player);
         Random rand = new Random();
         for (int i = 0; i< BALL_COUNT; ++i){
             float x = rand.nextInt(800);
@@ -66,7 +63,7 @@ public class GameView extends View {
             float dx = rand.nextInt(200) + 50;
             float dy = rand.nextInt(200) + 50;
             Ball b = new Ball(x, y, dx, dy);
-            balls.add(b);
+            objects.add(b);
         }
 
         frameTime = 0;
@@ -75,11 +72,8 @@ public class GameView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        for (Ball b : balls){
-            b.draw(canvas);
-        }
-        player.draw(canvas);
-        // Log.d(TAG,"Drawing at " + ball.x + ", " + ball.y + " / " + frameTime);
+        for (GameObject object : objects)
+            object.draw(canvas);
     }
 
     @Override

@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
-public class Player {
+public class Player implements GameObject {
     private static Bitmap bitmap = null;
     private static int imageWidth;
     private static int imageHeight;
@@ -26,14 +26,7 @@ public class Player {
     }
 
     public void update() {
-        // x += dx * GameView.frameTime;
-        // y += dy * GameView.frameTime;
-        // int w = GameView.view.getWidth();
-        // int h = GameView.view.getHeight();
-        // if (x < 0 || x + imageWidth > w)
-        //     this.dx *= -1;
-        // if (y < 0 || y + imageHeight > h)
-        //     this.dy *= -1;
+
     }
 
     public void moveTo(float x, float y){
