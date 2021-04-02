@@ -4,9 +4,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.Choreographer;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,6 +21,7 @@ public class GameView extends View {
     private float lastTime;
     public static float frameTime;
     public static GameView view;
+    private Player player;
 
     public GameView(Context context, @Nullable AttributeSet attribute) {
         super(context, attribute);
@@ -36,6 +39,7 @@ public class GameView extends View {
         for (Ball b : balls){
             b.update();
         }
+        player.update();
         // draw();
         invalidate();
 
@@ -54,6 +58,7 @@ public class GameView extends View {
     }
 
     private void initResources() {
+        player = new Player(100,100, 0, 0);
         Random rand = new Random();
         for (int i = 0; i< BALL_COUNT; ++i){
             float x = rand.nextInt(800);
@@ -73,6 +78,17 @@ public class GameView extends View {
         for (Ball b : balls){
             b.draw(canvas);
         }
+        player.draw(canvas);
         // Log.d(TAG,"Drawing at " + ball.x + ", " + ball.y + " / " + frameTime);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int action = event.getAction();
+        if (action == MotionEvent.ACTION_DOWN || action==MotionEvent.ACTION_MOVE){
+            player.moveTo(event.getX(), event.getY());
+            return true;
+        }
+        return super.onTouchEvent(event);
     }
 }
