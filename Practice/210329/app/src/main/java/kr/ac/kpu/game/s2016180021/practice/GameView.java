@@ -16,7 +16,7 @@ import java.util.Random;
 public class GameView extends View {
     private static final String TAG = GameView.class.getSimpleName();
     public static final int BALL_COUNT = 10;
-    ArrayList<GameObject> objects = new ArrayList<GameObject>();
+    ArrayList<GameObject> objects = new ArrayList<>();
     private Player player;
 
     private float lastTime;
