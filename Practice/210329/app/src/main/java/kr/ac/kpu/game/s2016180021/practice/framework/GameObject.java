@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2016180021.practice;
+package kr.ac.kpu.game.s2016180021.practice.framework;
 
 import android.graphics.Canvas;
 

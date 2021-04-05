@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2016180021.practice;
+package kr.ac.kpu.game.s2016180021.practice.ui.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,10 +8,13 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintSet;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import kr.ac.kpu.game.s2016180021.practice.game.Ball;
+import kr.ac.kpu.game.s2016180021.practice.framework.GameObject;
+import kr.ac.kpu.game.s2016180021.practice.game.Player;
 
 public class GameView extends View {
     private static final String TAG = GameView.class.getSimpleName();

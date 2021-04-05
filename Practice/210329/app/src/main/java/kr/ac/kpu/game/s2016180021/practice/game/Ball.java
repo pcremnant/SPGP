@@ -1,9 +1,13 @@
-package kr.ac.kpu.game.s2016180021.practice;
+package kr.ac.kpu.game.s2016180021.practice.game;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+
+import kr.ac.kpu.game.s2016180021.practice.R;
+import kr.ac.kpu.game.s2016180021.practice.framework.GameObject;
+import kr.ac.kpu.game.s2016180021.practice.ui.view.GameView;
 
 public class Ball implements GameObject {
     private static Bitmap bitmap = null;
