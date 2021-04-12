@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import kr.ac.kpu.game.s2016180021.practice.framework.GameObject;
+import kr.ac.kpu.game.s2016180021.practice.ui.view.GameView;
 
 public class MainGame {
     private static MainGame instance;
@@ -19,11 +20,15 @@ public class MainGame {
     ArrayList<GameObject> objects = new ArrayList<>();
     private Player player;
     public static final int BALL_COUNT = 10;
-    public static float frameTime = 0;
-    public static float lastTime;
+    public float frameTime = 0;
+    public float lastTime;
+    private boolean initialized = false;
 
     public void initResources() {
-        player = new Player(100,100, 0, 0);
+        if (initialized) return;
+        int w = GameView.view.getWidth();
+        int h = GameView.view.getHeight();
+        player = new Player((int)w/2,(int)h/2, 0, 0);
         objects.add(player);
         Random rand = new Random();
         for (int i = 0; i< BALL_COUNT; ++i){
@@ -37,14 +42,17 @@ public class MainGame {
 
         frameTime = 0;
         lastTime = 0;
+        initialized = true;
     }
 
     public void update() {
+        if (!initialized) return;
         for (GameObject object : objects)
             object.update();
     }
 
     public void draw(Canvas canvas) {
+        if (!initialized) return;
         for (GameObject object : objects)
             object.draw(canvas);
     }
@@ -56,5 +64,18 @@ public class MainGame {
             return true;
         }
         return false;
+    }
+
+    public void add(GameObject gameObject) {
+        objects.add(gameObject);
+    }
+
+    public void removeObject(GameObject gameObject) {
+        GameView.view.post(new Runnable() {
+            @Override
+            public void run() {
+                objects.remove(gameObject);
+            }
+        });
     }
 }

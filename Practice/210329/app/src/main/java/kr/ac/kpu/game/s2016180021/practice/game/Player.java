@@ -36,29 +36,35 @@ public class Player implements GameObject {
     }
 
     public void update() {
-        this.x += speed * dx * MainGame.get().frameTime;
-        this.y += speed * dy * MainGame.get().frameTime;
-        if (dx > 0 && x > tx)
-            x = tx;
-        else if (dx <= 0 && x < tx)
-            x = tx;
-        if (dy > 0 && y > ty)
-            y = ty;
-        else if (dy<= 0 && y<ty)
-            y = ty;
+        // this.x += speed * dx * MainGame.get().frameTime;
+        // this.y += speed * dy * MainGame.get().frameTime;
+        // if (dx > 0 && x > tx)
+        //     x = tx;
+        // else if (dx <= 0 && x < tx)
+        //     x = tx;
+        // if (dy > 0 && y > ty)
+        //     y = ty;
+        // else if (dy<= 0 && y<ty)
+        //     y = ty;
     }
 
     public void moveTo(float x, float y){
-        this.tx = x;
-        this.ty = y;
-        float delta_x = tx - this.x;
-        float delta_y = ty - this.y;
-        angle = (float) Math.atan2(delta_y, delta_x);
-        this.dx = (float) Math.cos(angle);
-        this.dy = (float) Math.sin(angle);
+        Bullet bullet = new Bullet(this.x, this.y, x, y);
+        MainGame.get().add(bullet);
+       this.tx = x;
+       this.ty = y;
+       float delta_x = tx - this.x;
+       float delta_y = ty - this.y;
+       angle = (float) Math.atan2(delta_y, delta_x);
+       // this.dx = (float) Math.cos(angle);
+       // this.dy = (float) Math.sin(angle);
     }
 
     public void draw(Canvas canvas) {
+        canvas.save();
+        canvas.rotate((float)Math.toDegrees(angle) + 90, this.x, this.y);
         canvas.drawBitmap(bitmap, this.x - imageWidth/2, this.y - imageHeight/2, null);
+        canvas.restore();
+        // canvas.rotate( -((float)Math.toDegrees(angle) + 90), this.x, this.y);
     }
 }

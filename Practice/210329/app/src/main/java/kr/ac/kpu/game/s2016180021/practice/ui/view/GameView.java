@@ -18,8 +18,12 @@ public class GameView extends View {
     public GameView(Context context, @Nullable AttributeSet attribute) {
         super(context, attribute);
         GameView.view = this;
-        MainGame.get().initResources();
         startUpdating();
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        MainGame.get().initResources();
     }
 
     private void startUpdating() {
