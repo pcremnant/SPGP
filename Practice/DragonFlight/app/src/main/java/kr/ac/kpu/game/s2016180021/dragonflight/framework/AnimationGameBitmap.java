@@ -1,15 +1,10 @@
-package kr.ac.kpu.game.s2016180021.practice.framework;
+package kr.ac.kpu.game.s2016180021.dragonflight.framework;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import java.util.HashMap;
-
-import kr.ac.kpu.game.s2016180021.practice.ui.view.GameView;
 
 public class AnimationGameBitmap extends GameBitmap {
     private Bitmap bitmap;

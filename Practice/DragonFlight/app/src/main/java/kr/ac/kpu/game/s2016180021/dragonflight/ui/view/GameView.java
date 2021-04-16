@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2016180021.practice.ui.view;
+package kr.ac.kpu.game.s2016180021.dragonflight.ui.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,8 +9,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import kr.ac.kpu.game.s2016180021.practice.framework.Sound;
-import kr.ac.kpu.game.s2016180021.practice.game.MainGame;
+import kr.ac.kpu.game.s2016180021.dragonflight.framework.Sound;
+import kr.ac.kpu.game.s2016180021.dragonflight.game.MainGame;
 
 public class GameView extends View {
     private static final String TAG = GameView.class.getSimpleName();
@@ -20,7 +20,6 @@ public class GameView extends View {
         super(context, attribute);
         GameView.view = this;
         Sound.Init(context);
-        // startUpdating();
     }
 
     @Override
@@ -53,29 +52,6 @@ public class GameView extends View {
             }
         });
     }
-
-    // private void startUpdating() {
-    //     doGameFrame();
-    // }
-
-    // private void doGameFrame() {
-    //     MainGame.get().update();
-    //     invalidate();
-//
-    //     Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
-    //         @Override
-    //         public void doFrame(long time) {
-    //             MainGame game = MainGame.get();
-    //             if (game.lastTime == 0) {
-    //                 game.lastTime = time;
-    //             }
-    //             game.frameTime = (float) (time - game.lastTime) / (1000 * 1000 * 1000);
-    //             doGameFrame();
-//
-    //             game.lastTime = time;
-    //         }
-    //     });
-    // }
 
     @Override
     protected void onDraw(Canvas canvas) {
