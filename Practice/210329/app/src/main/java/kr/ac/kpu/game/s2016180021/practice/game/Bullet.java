@@ -14,7 +14,7 @@ import kr.ac.kpu.game.s2016180021.practice.framework.GameObject;
 import kr.ac.kpu.game.s2016180021.practice.ui.view.GameView;
 
 public class Bullet implements GameObject {
-    private static AnimationGameBitmap bitmap = null;
+    private AnimationGameBitmap bitmap = null;
     private final float angle;
     private final int sx;
     private final int sy;

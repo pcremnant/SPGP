@@ -7,6 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
+import java.util.Random;
+
 import kr.ac.kpu.game.s2016180021.practice.R;
 import kr.ac.kpu.game.s2016180021.practice.framework.AnimationGameBitmap;
 import kr.ac.kpu.game.s2016180021.practice.framework.GameObject;
@@ -17,7 +19,7 @@ public class Ball implements GameObject {
     private final int sy;
     private float x, y;
     private float dx, dy;
-    private static AnimationGameBitmap bitmap = null;
+    private AnimationGameBitmap bitmap = null;
     private float FRAME_RATE = 8.5f;
 
     public Ball(float x, float y, float dx, float dy) {
@@ -26,9 +28,10 @@ public class Ball implements GameObject {
         this.dx = dx;
         this.dy = dy;
 
-        if (bitmap == null) {
-            bitmap = new AnimationGameBitmap(R.mipmap.fireball_128_24f, FRAME_RATE, 0);
-        }
+
+        Random r = new Random();
+        float frameRate = FRAME_RATE * (r.nextFloat() * 0.2f + 0.9f);
+        bitmap = new AnimationGameBitmap(R.mipmap.fireball_128_24f, frameRate, 0);
 
 
         this.sx = bitmap.getWidth();

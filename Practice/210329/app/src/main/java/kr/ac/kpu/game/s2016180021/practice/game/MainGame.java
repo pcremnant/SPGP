@@ -16,16 +16,16 @@ public class MainGame {
             instance = new MainGame();
         return instance;
     }
+    public static final int BALL_COUNT = 10;
 
     ArrayList<GameObject> objects = new ArrayList<>();
     private Player player;
-    public static final int BALL_COUNT = 10;
     public float frameTime = 0;
-    public float lastTime;
+    // public float lastTime;
     private boolean initialized = false;
 
-    public void initResources() {
-        if (initialized) return;
+    public boolean initResources() {
+        if (initialized) return false;
         int w = GameView.view.getWidth();
         int h = GameView.view.getHeight();
         player = new Player((int)w/2,(int)h/2, 0, 0);
@@ -41,25 +41,26 @@ public class MainGame {
         }
 
         frameTime = 0;
-        lastTime = 0;
+        // lastTime = 0;
         initialized = true;
+        return true;
     }
 
     public void update() {
-        if (!initialized) return;
+       //  if (!initialized) return;
         for (GameObject object : objects)
             object.update();
     }
 
     public void draw(Canvas canvas) {
-        if (!initialized) return;
+        // if (!initialized) return;
         for (GameObject object : objects)
             object.draw(canvas);
     }
 
     public boolean OnTouchEvent(MotionEvent event) {
         int action = event.getAction();
-        if (action == MotionEvent.ACTION_DOWN || action==MotionEvent.ACTION_MOVE){
+        if (action == MotionEvent.ACTION_DOWN){
             player.moveTo(event.getX(), event.getY());
             return true;
         }

@@ -4,15 +4,18 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.media.MediaPlayer;
 
 import kr.ac.kpu.game.s2016180021.practice.R;
 import kr.ac.kpu.game.s2016180021.practice.framework.GameObject;
+import kr.ac.kpu.game.s2016180021.practice.framework.Sound;
 import kr.ac.kpu.game.s2016180021.practice.ui.view.GameView;
 
 public class Player implements GameObject {
     private static Bitmap bitmap = null;
     private static int imageWidth;
     private static int imageHeight;
+    private Sound mediaPlayer;
     private float x, y;
     private float dx, dy;
     private float tx, ty;
@@ -33,6 +36,7 @@ public class Player implements GameObject {
             imageWidth = bitmap.getWidth();
             imageHeight = bitmap.getHeight();
         }
+        // mediaPlayer = MediaPlayer.create(GameView.view.getContext(), R.raw.hadoken);
     }
 
     public void update() {
@@ -49,6 +53,7 @@ public class Player implements GameObject {
     }
 
     public void moveTo(float x, float y){
+        mediaPlayer.Play(R.raw.knife_swing);
         Bullet bullet = new Bullet(this.x, this.y, x, y);
         MainGame.get().add(bullet);
        this.tx = x;

@@ -7,11 +7,12 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import kr.ac.kpu.game.s2016180021.practice.R;
+import java.util.HashMap;
+
 import kr.ac.kpu.game.s2016180021.practice.ui.view.GameView;
 
 public class AnimationGameBitmap extends GameBitmap {
-    private final Bitmap bitmap;
+    private Bitmap bitmap;
     private final int imageWidth;
     private final int imageHeight;
     private final int frameWidth;
@@ -22,12 +23,7 @@ public class AnimationGameBitmap extends GameBitmap {
     private int PIXEL_MULTIPLIER = 4;
 
     public AnimationGameBitmap(int resId, float framesPerSecond, int frameCount){
-        Resources res = GameView.view.getResources();
-
-        BitmapFactory.Options opts = new BitmapFactory.Options();
-        opts.inScaled = false;
-
-        bitmap = BitmapFactory.decodeResource(res, resId);
+        bitmap = GameBitmap.loadBitmap(resId);
 
         imageWidth = bitmap.getWidth();
         imageHeight = bitmap.getHeight();
@@ -41,16 +37,12 @@ public class AnimationGameBitmap extends GameBitmap {
         framePerSecond = framesPerSecond;
     }
 
-    // public void update(){
-    //     int elapsed = (int) (System.currentTimeMillis() - createOn);
-    //     frameIndex = Math.round(elapsed * 0.001f * framePerSecond) % frameCount;
-    // }
-
     public void draw(Canvas canvas, float x, float y) {
         int elapsed = (int) (System.currentTimeMillis() - createOn);
         frameIndex = Math.round(elapsed * 0.001f * framePerSecond) % frameCount;
         Rect src = new Rect(frameIndex * frameWidth, 0, (frameIndex + 1) * frameWidth, imageHeight);
-        RectF dst = new RectF(x - frameWidth / 2, y - imageHeight / 2, x + frameWidth / 2, y + imageHeight / 2);
+        RectF dst = new RectF(x - frameWidth* PIXEL_MULTIPLIER / 2, y - imageHeight* PIXEL_MULTIPLIER / 2,
+                x + frameWidth* PIXEL_MULTIPLIER / 2, y + imageHeight* PIXEL_MULTIPLIER / 2);
         canvas.drawBitmap(bitmap, src, dst, null);
     }
 
