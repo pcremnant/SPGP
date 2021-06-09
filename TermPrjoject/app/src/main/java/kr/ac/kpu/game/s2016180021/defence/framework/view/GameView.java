@@ -16,7 +16,7 @@ import kr.ac.kpu.game.s2016180021.defence.framework.utils.Sound;
 public class GameView extends View {
     private static final String TAG = GameView.class.getSimpleName();
 
-    public static float MULTIPLIER = 2;
+    public static float MULTIPLIER = 4;
     private boolean running;
     //    private Ball b1, b2;
 

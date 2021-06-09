@@ -5,7 +5,7 @@ import android.graphics.Rect;
 
 import kr.ac.kpu.game.s2016180021.defence.framework.view.GameView;
 
-public class AnimationGameBitmap extends GameBitmap {
+public class AnimationSheetGameBitmap extends GameBitmap {
     //private Bitmap bitmap;
     private final int imageWidth;
     private final int imageHeight;
@@ -17,7 +17,7 @@ public class AnimationGameBitmap extends GameBitmap {
 
     protected Rect srcRect = new Rect();
 
-    public AnimationGameBitmap(int resId, float framesPerSecond, int frameCount) {
+    public AnimationSheetGameBitmap(int resId, float framesPerSecond, int frameCount) {
         super(resId);
         //bitmap = GameBitmap.load(resId);
         imageWidth = bitmap.getWidth();

@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
 import kr.ac.kpu.game.s2016180021.defence.framework.view.GameView;
 
-public class IndexedAnimationGameBitmap extends AnimationGameBitmap {
+public class IndexedAnimationSheetGameBitmap extends AnimationSheetGameBitmap {
 
-    private static final String TAG = kr.ac.kpu.game.s2016180021.defence.framework.bitmap.IndexedAnimationGameBitmap.class.getSimpleName();
+    private static final String TAG = IndexedAnimationSheetGameBitmap.class.getSimpleName();
     private final int frameHeight;
     private final int border;
     private final int spacing;
 
-    public IndexedAnimationGameBitmap(int resId, int width, int height, int border, int spacing, float framesPerSecond) {
+    public IndexedAnimationSheetGameBitmap(int resId, int width, int height, int border, int spacing, float framesPerSecond) {
         super(resId, framesPerSecond, 0);
         this.border = border;
         this.spacing = spacing;

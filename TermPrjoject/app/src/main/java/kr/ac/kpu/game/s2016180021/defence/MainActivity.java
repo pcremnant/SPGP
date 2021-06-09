@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import kr.ac.kpu.game.s2016180021.defence.framework.view.GameView;
+import kr.ac.kpu.game.s2016180021.defence.game.MainGame;
 
 public class MainActivity extends AppCompatActivity {
 
