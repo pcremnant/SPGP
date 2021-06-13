@@ -18,23 +18,22 @@ public class AnimationStateGameBitmap {
     protected float delayTime;
     protected boolean isDelay;
     protected float delayTimer;
+    protected boolean endDelay;
 
     protected Rect srcRect = new Rect();
     protected RectF dstRect = new RectF();
     protected ArrayList<GameBitmap> bitmaps = new ArrayList<>();
 
-
-     // 1초에 10개
-    // 0.1초에 1개
     public AnimationStateGameBitmap(float framesPerSecond, int frameCount) {
         this.framesPerSecond = framesPerSecond;
         this.frameCount = frameCount;
         createdOn = System.currentTimeMillis();
         frameIndex = 0;
         timer = 0;
-        delayTime = 0;
         isDelay = false;
+        delayTime = 0;
         delayTimer = 0;
+        endDelay = false;
     }
 
     public void addBitmap(int resId){
@@ -49,20 +48,25 @@ public class AnimationStateGameBitmap {
         return bitmaps.get(frameIndex).getHeight();
     }
 
-    public boolean advanceFrame() {
+    // public boolean isDelayTime(){return isDelay;}
+
+    public boolean isEndDelay() {return endDelay;}
+
+    public void advanceFrame() {
         if (isDelay) {
             delayTimer += MainGame.get().frameTime;
             if (delayTimer >= delayTime) {
                 timer = 0;
                 frameIndex = 0;
                 isDelay = false;
-                return true;
+                endDelay = true;
             }
         } else {
             timer += MainGame.get().frameTime;
             while (timer > 1 / framesPerSecond) {
                 timer -= 1 / framesPerSecond;
                 frameIndex++;
+                endDelay = false;
                 if (frameIndex == frameCount) {
                     frameIndex = frameCount - 1;
                     isDelay = true;
@@ -71,8 +75,8 @@ public class AnimationStateGameBitmap {
                 }
             }
         }
-        return false;
     }
+
     public void setDelayTime(float d){
         delayTime = d;
     }
@@ -80,13 +84,12 @@ public class AnimationStateGameBitmap {
     public void resetTimer(){
         this.timer = 0;
         this.frameIndex = 0;
+        this.endDelay = false;
+        this.isDelay = false;
+        this.delayTimer = 0;
     }
 
     public void draw(Canvas canvas, float x, float y) {
-        // int elapsed = (int)(System.currentTimeMillis() - createdOn);
-        // frameIndex = Math.round(elapsed * 0.001f * framesPerSecond) % frameCount;
-        // if (frameIndex >= frameCount)
-        //     frameIndex = 0;
         int w = bitmaps.get(frameIndex).getWidth();
         int h = bitmaps.get(frameIndex).getHeight();
         float hw = w / 2 * GameView.MULTIPLIER;

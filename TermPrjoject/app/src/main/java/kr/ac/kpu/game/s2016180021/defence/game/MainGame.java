@@ -8,8 +8,11 @@ import kr.ac.kpu.game.s2016180021.defence.R;
 import kr.ac.kpu.game.s2016180021.defence.framework.game.BaseGame;
 import kr.ac.kpu.game.s2016180021.defence.framework.iface.GameObject;
 import kr.ac.kpu.game.s2016180021.defence.framework.object.BackgroundObject;
+import kr.ac.kpu.game.s2016180021.defence.framework.object.UnitObject;
 import kr.ac.kpu.game.s2016180021.defence.framework.view.GameView;
+import kr.ac.kpu.game.s2016180021.defence.game.unit.EnemySpearMan;
 import kr.ac.kpu.game.s2016180021.defence.game.unit.GunMan;
+import kr.ac.kpu.game.s2016180021.defence.game.unit.SpearMan;
 
 public class MainGame extends BaseGame {
     private boolean initialized;
@@ -21,7 +24,7 @@ public class MainGame extends BaseGame {
         return (MainGame) instance;
     }
     public enum Layer {
-        bg, platform, item, player, ui, controller, LAYER_COUNT
+        bg, platform, item, unit, ui, controller, LAYER_COUNT
     }
 
     public void add(Layer layer, GameObject obj) {
@@ -44,7 +47,9 @@ public class MainGame extends BaseGame {
 
         add(Layer.bg, new BackgroundObject(R.mipmap.bg_ground));
 
-        add(Layer.player, new GunMan(40,100));
+        add(Layer.unit, new GunMan(300,400));
+        add(Layer.unit, new SpearMan(300,400));
+        add(Layer.unit, new EnemySpearMan(1000,400));
 
         // add(Layer.controller, new StageMap("stage_01.txt"));
 
@@ -83,6 +88,15 @@ public class MainGame extends BaseGame {
         super.update();
 
         // collision check
+        for (GameObject o1 : objectsAt(Layer.unit)){
+            for (GameObject o2 : objectsAt(Layer.unit)) {
+                UnitObject unit1 = (UnitObject)o1;
+                UnitObject unit2 = (UnitObject)o2;
+                if (unit1.checkInAttackRange(unit2))
+                    break;
+                // unit2.checkInAttackRange(unit1);
+            }
+        }
     }
 
     @Override
