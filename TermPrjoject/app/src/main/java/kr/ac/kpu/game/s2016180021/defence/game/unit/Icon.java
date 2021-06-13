@@ -1,7 +1,6 @@
 package kr.ac.kpu.game.s2016180021.defence.game.unit;
 
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.graphics.RectF;
 
 import kr.ac.kpu.game.s2016180021.defence.framework.bitmap.GameBitmap;

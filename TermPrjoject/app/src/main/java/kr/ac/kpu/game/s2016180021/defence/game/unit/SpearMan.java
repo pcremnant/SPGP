@@ -20,9 +20,9 @@ public class SpearMan extends UnitObject{
         hp = maxHp;
         state = STATE_WALK;
         moveDirection = 1;
-        moveSpeed = 1;
-        attackDamage = 1;
-        attackRange = 100;
+        moveSpeed = 1.7f;
+        attackDamage = 3;
+        attackRange = 150;
         attackDelay = 0.3f;
         t = 0;
         isPlayer = true;

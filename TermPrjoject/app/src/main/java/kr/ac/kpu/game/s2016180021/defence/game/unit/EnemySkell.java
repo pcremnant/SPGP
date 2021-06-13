@@ -16,9 +16,9 @@ public class EnemySkell extends UnitObject {
         state = STATE_WALK;
         moveDirection = -1;
         moveSpeed = 1;
-        attackDamage = 1;
-        attackRange = 100;
-        attackDelay = 0.5f;
+        attackDamage = 2;
+        attackRange = 200;
+        attackDelay = 1.5f;
         isPlayer = false;
 
 

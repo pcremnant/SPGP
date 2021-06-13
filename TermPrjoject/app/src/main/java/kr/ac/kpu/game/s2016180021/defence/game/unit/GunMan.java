@@ -1,13 +1,10 @@
 package kr.ac.kpu.game.s2016180021.defence.game.unit;
 
 import android.graphics.Canvas;
-import android.graphics.RectF;
 
 import kr.ac.kpu.game.s2016180021.defence.R;
 import kr.ac.kpu.game.s2016180021.defence.framework.bitmap.AnimationStateGameBitmap;
-import kr.ac.kpu.game.s2016180021.defence.framework.iface.BoxCollidable;
 import kr.ac.kpu.game.s2016180021.defence.framework.object.UnitObject;
-import kr.ac.kpu.game.s2016180021.defence.framework.view.GameView;
 
 public class GunMan extends UnitObject {
     public GunMan(float x, float y) {
@@ -18,9 +15,9 @@ public class GunMan extends UnitObject {
         state = STATE_WALK;
         moveDirection = 1;
         moveSpeed = 1;
-        attackDamage = 1;
+        attackDamage = 2;
         attackRange = 400;
-        attackDelay = 1;
+        attackDelay = 0.8f;
         isPlayer = true;
 
 

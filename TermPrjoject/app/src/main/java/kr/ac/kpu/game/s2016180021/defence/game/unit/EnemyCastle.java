@@ -4,9 +4,12 @@ import android.graphics.Canvas;
 
 import kr.ac.kpu.game.s2016180021.defence.R;
 import kr.ac.kpu.game.s2016180021.defence.framework.bitmap.AnimationStateGameBitmap;
+import kr.ac.kpu.game.s2016180021.defence.framework.object.ImageObject;
 import kr.ac.kpu.game.s2016180021.defence.framework.object.UnitObject;
 
 public class EnemyCastle extends UnitObject {
+    ImageObject hpBar;
+
     public EnemyCastle(float x, float y) {
         this.x = x;
         this.y = y;
@@ -29,6 +32,10 @@ public class EnemyCastle extends UnitObject {
     @Override
     public void update() {
         // super.update();
+    }
+
+    public int getHp(){
+        return this.hp;
     }
 
     @Override

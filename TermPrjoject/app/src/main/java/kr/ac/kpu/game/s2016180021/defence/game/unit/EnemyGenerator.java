@@ -34,10 +34,10 @@ public class EnemyGenerator implements GameObject {
         MainGame game = MainGame.get();
         for (int i=0;i<numEnemies;++i){
             if (r.nextInt(2) == 0){
-                game.add(MainGame.Layer.unit, new EnemySkell(x, y));
+                game.add(MainGame.Layer.unit, new EnemySkell(x - 100, y));
             }
             else{
-                game.add(MainGame.Layer.unit, new EnemySpearMan(x, y + 50));
+                game.add(MainGame.Layer.unit, new EnemySpearMan(x - 100, y + 50));
 
             }
         }

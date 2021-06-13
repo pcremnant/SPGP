@@ -18,7 +18,6 @@ public class GameView extends View {
 
     public static float MULTIPLIER = 4;
     private boolean running;
-    //    private Ball b1, b2;
 
     private long lastFrame;
     public static GameView view;
@@ -28,7 +27,6 @@ public class GameView extends View {
         GameView.view = this;
         Sound.init(context);
         running = true;
-//        startUpdating();
     }
 
     @Override

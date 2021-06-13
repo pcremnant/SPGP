@@ -15,7 +15,7 @@ public class EnemySpearMan extends UnitObject {
         hp = maxHp;
         state = STATE_WALK;
         moveDirection = -1;
-        moveSpeed = 1;
+        moveSpeed = 1.5f;
         attackDamage = 1;
         attackRange = 100;
         attackDelay = 0.5f;

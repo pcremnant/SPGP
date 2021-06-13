@@ -115,6 +115,14 @@ public class BaseGame {
 //        Log.d(TAG, "<A> object count = " + objects.size());
     }
 
+    public void removeAll(){
+        for (ArrayList<GameObject> layer : layers){
+            for (GameObject o : layer){
+                remove(o);
+            }
+        }
+    }
+
     public void remove(GameObject gameObject) {
         remove(gameObject, true);
     }

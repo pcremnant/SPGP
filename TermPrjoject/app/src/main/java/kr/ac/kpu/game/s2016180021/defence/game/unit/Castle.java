@@ -31,6 +31,10 @@ public class Castle extends UnitObject {
         // super.update();
     }
 
+    public int getHp(){
+        return this.hp;
+    }
+
     @Override
     public void draw(Canvas canvas) {
         animations.get(0).draw(canvas, x, y);
