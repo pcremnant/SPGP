@@ -9,6 +9,8 @@ import kr.ac.kpu.game.s2016180021.defence.framework.bitmap.AnimationStateGameBit
 import kr.ac.kpu.game.s2016180021.defence.framework.iface.BoxCollidable;
 import kr.ac.kpu.game.s2016180021.defence.framework.iface.GameObject;
 import kr.ac.kpu.game.s2016180021.defence.framework.view.GameView;
+import kr.ac.kpu.game.s2016180021.defence.game.MainGame;
+import kr.ac.kpu.game.s2016180021.defence.game.unit.DeadEffect;
 
 public class UnitObject implements GameObject, BoxCollidable {
     protected static final int STATE_WALK = 0;
@@ -92,17 +94,16 @@ public class UnitObject implements GameObject, BoxCollidable {
         hp -= damage;
         if (hp <= 0){
             hp = 0;
-            isDead = true;
+            MainGame game= MainGame.get();
+            game.add(MainGame.Layer.ui, new DeadEffect(this.x, this.y));
+            game.remove(this);
         }
     }
 
     protected void changeState(int state, boolean resetTimer){
-        // this.animations.get(state).resetTimer();
         if (resetTimer)
             animations.get(state).resetTimer();
         this.state = state;
-        // if (resetTimer)
-            // animations.get(state).resetTimer();
     }
 
     public boolean checkInAttackRange(UnitObject other){
