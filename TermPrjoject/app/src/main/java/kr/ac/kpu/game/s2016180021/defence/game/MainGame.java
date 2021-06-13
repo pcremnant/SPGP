@@ -16,6 +16,7 @@ import kr.ac.kpu.game.s2016180021.defence.game.unit.EnemyGenerator;
 import kr.ac.kpu.game.s2016180021.defence.game.unit.EnemySkell;
 import kr.ac.kpu.game.s2016180021.defence.game.unit.EnemySpearMan;
 import kr.ac.kpu.game.s2016180021.defence.game.unit.GunMan;
+import kr.ac.kpu.game.s2016180021.defence.game.unit.Icon;
 import kr.ac.kpu.game.s2016180021.defence.game.unit.SpearMan;
 
 public class MainGame extends BaseGame {
@@ -28,7 +29,7 @@ public class MainGame extends BaseGame {
         return (MainGame) instance;
     }
     public enum Layer {
-        bg, castle, unit, ui, controller, LAYER_COUNT
+        bg, castle, unit, ui, icon, controller, LAYER_COUNT
     }
 
     public void add(Layer layer, GameObject obj) {
@@ -53,11 +54,14 @@ public class MainGame extends BaseGame {
 
         add(Layer.controller, new EnemyGenerator(w - 200, h - 350));
 
-        add(Layer.unit, new GunMan(200,h - 500));
-        add(Layer.unit, new SpearMan(200,h - 500));
+        // add(Layer.unit, new GunMan(200,h - 500));
+        // add(Layer.unit, new SpearMan(200,h - 500));
 
         add(Layer.castle, new Castle(200, h - 500));
         add(Layer.castle, new EnemyCastle(w - 200, h - 500));
+
+        add(Layer.icon, new Icon(R.mipmap.icon_gunman, w - 600, h - 100));
+        add(Layer.icon, new Icon(R.mipmap.icon_spearman, w - 400, h - 100));
 
         // add(Layer.controller, new StageMap("stage_01.txt"));
 
@@ -108,19 +112,24 @@ public class MainGame extends BaseGame {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        // int action = event.getAction();
-//        if (action == MotionEvent.ACTION_DOWN) {
-        // if (action == MotionEvent.ACTION_DOWN) {
-//      //       player.moveTo(event.getX(), event.getY());
-        //     if (event.getX() < GameView.view.getWidth() / 2) {
-        //         player.jump();
-        //     } else {
-        //         player.startSliding();
-        //     }
-        //     return true;
-        // } else if (action == MotionEvent.ACTION_UP) {
-        //     player.endSliding();
-        // }
+        int action = event.getAction();
+        if (action == MotionEvent.ACTION_DOWN) {
+            for (Object o : objectsAt(Layer.icon)) {
+                Icon i = (Icon) o;
+
+                if (i.isClicked(event.getX(), event.getY())) {
+                    int h = GameView.view.getHeight();
+                    if (i.getResId() == R.mipmap.icon_gunman) {
+                        add(Layer.unit, new GunMan(200, h - 300));
+                    } else if (i.getResId() == R.mipmap.icon_spearman) {
+                        add(Layer.unit, new SpearMan(200, h - 300));
+                    }
+                }
+            }
+            return true;
+        } else if (action == MotionEvent.ACTION_UP) {
+
+        }
         return false;
     }
 }
