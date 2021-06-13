@@ -1,12 +1,19 @@
 package kr.ac.kpu.game.s2016180021.defence.game.unit;
 
 import android.graphics.Canvas;
+import android.graphics.RectF;
 
 import kr.ac.kpu.game.s2016180021.defence.R;
 import kr.ac.kpu.game.s2016180021.defence.framework.bitmap.AnimationStateGameBitmap;
+import kr.ac.kpu.game.s2016180021.defence.framework.object.ImageObject;
 import kr.ac.kpu.game.s2016180021.defence.framework.object.UnitObject;
 
 public class Castle extends UnitObject {
+    ImageObject hpBar;
+    RectF hpBarRect = new RectF();
+    static final int mx = 150;
+    static final int my = 200;
+
     public Castle(float x, float y) {
         this.x = x;
         this.y = y;
@@ -20,7 +27,8 @@ public class Castle extends UnitObject {
         attackDelay = 0;
         isPlayer = true;
 
-
+        hpBarRect.set( x - mx, y - my, x - mx + hp * 3, y + 30 - my);
+        hpBar = new ImageObject(R.mipmap.ui_hp,hpBarRect.left,hpBarRect.top, hpBarRect.right, hpBarRect.bottom);
         AnimationStateGameBitmap castle = new AnimationStateGameBitmap(1, 1);
         castle.addBitmap(R.mipmap.castle);
         animations.add(castle);
@@ -29,6 +37,8 @@ public class Castle extends UnitObject {
     @Override
     public void update() {
         // super.update();
+        hpBarRect.set(x - mx, y - my, x - mx + hp * 3, y + 30 - my);
+        hpBar.setDstRect(hpBarRect);
     }
 
     public int getHp(){
@@ -38,5 +48,6 @@ public class Castle extends UnitObject {
     @Override
     public void draw(Canvas canvas) {
         animations.get(0).draw(canvas, x, y);
+        hpBar.draw(canvas);
     }
 }
