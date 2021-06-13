@@ -33,12 +33,12 @@ public class BaseGame {
     protected BaseGame() {
         instance = this;
 
-        if (BuildConfig.showsCollisionBox) {
-            collisionRect = new RectF();
-            collisionPaint = new Paint();
-            collisionPaint.setStyle(Paint.Style.STROKE);
-            collisionPaint.setColor(Color.RED);
-        }
+        // if (BuildConfig.showsCollisionBox) {
+        //     collisionRect = new RectF();
+        //     collisionPaint = new Paint();
+        //     collisionPaint.setStyle(Paint.Style.STROKE);
+        //     collisionPaint.setColor(Color.RED);
+        // }
     }
 //    Player player;
     ArrayList<ArrayList<GameObject>> layers;
@@ -87,17 +87,17 @@ public class BaseGame {
                 o.draw(canvas);
             }
         }
-        if (BuildConfig.showsCollisionBox) {
-            for (ArrayList<GameObject> objects: layers) {
-                for (GameObject o : objects) {
-                    if (!(o instanceof BoxCollidable)) {
-                        continue;
-                    }
-                    ((BoxCollidable) o).getBoundingRect(collisionRect);
-                    canvas.drawRect(collisionRect, collisionPaint);
-                }
-            }
-        }
+        // if (BuildConfig.showsCollisionBox) {
+        //     for (ArrayList<GameObject> objects: layers) {
+        //         for (GameObject o : objects) {
+        //             if (!(o instanceof BoxCollidable)) {
+        //                 continue;
+        //             }
+        //             ((BoxCollidable) o).getBoundingRect(collisionRect);
+        //             canvas.drawRect(collisionRect, collisionPaint);
+        //         }
+        //     }
+        // }
     }
 
     public boolean onTouchEvent(MotionEvent event) {
